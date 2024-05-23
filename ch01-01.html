@@ -1,0 +1,272 @@
+<!DOCTYPE HTML>
+<html lang="cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>OS 环境配置 - ArceOS Tutorial Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html" class="active"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">ArceOS Tutorial Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/rcore-os/arceos-tutorial-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="os-环境配置"><a class="header" href="#os-环境配置">OS 环境配置</a></h2>
+<p>目前实验内容可支持在 <a href="https://cdimage.ubuntu.com/releases/">Ubuntu操作系统</a> 上进行操作。</p>
+<p>对于 Windows10/11 的用户可以通过系统内置的 WSL2 虚拟机（请不要使用 WSL1）来安装 Ubuntu 22.04，步骤如下：</p>
+<ul>
+<li>
+<p>升级 Windows 10/11 到最新版（Windows 10 版本 18917 或以后的内部版本）。注意，如果不是 Windows 10/11 专业版，可能需要手动更新，在微软官网上下载。升级之后， 可以在 PowerShell 中输入 <code>winver</code> 命令来查看内部版本号。</p>
+</li>
+<li>
+<p>「Windows 设置 &gt; 更新和安全 &gt; Windows 预览体验计划」处选择加入 “Dev 开发者模式”。</p>
+</li>
+<li>
+<p>以管理员身份打开 PowerShell 终端并输入以下命令：</p>
+<pre><code class="language-powershell"># 启用 Windows 功能：“适用于 Linux 的 Windows 子系统”
+&gt;&gt; dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+
+# 启用 Windows 功能：“已安装的系统虚拟机平台”
+&gt;&gt; dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+# &lt;Distro&gt; 改为对应从微软应用商店安装的 Linux 版本名，比如：`wsl --set-version Ubuntu 2`
+# 如果你没有提前从微软应用商店安装任何 Linux 版本，请跳过此步骤
+&gt;&gt; wsl --set-version &lt;Distro&gt; 2
+
+# 设置默认为 WSL 2，如果 Windows 版本不够，这条命令会出错
+&gt;&gt; wsl --set-default-version 2
+
+# 启用运行 WSL 并安装 Linux 的 Ubuntu 发行版所需的功能，根据向导设置用户名和密码
+&gt;&gt; wsl --install
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p><font color=blue><strong>注解👉</strong></font></p>
+<p>由于时间问题我们主要在 Ubuntu22.04  on x86-64 上进行了测试，后面的配置也是基于此环境进行。你也可以在其他 Linux 发行版上进行实验，基本上不会出现太大的问题。如果遇到了问题的话，请在本节的讨论区中留言，我们会尽量帮助解决。</p>
+</blockquote>
+<p>参考：<a href="https://docs.microsoft.com/zh-cn/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">使用 WSL 在 Windows 上安装 Linux</a></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch01-00.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="ch01-02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch01-00.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="ch01-02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
