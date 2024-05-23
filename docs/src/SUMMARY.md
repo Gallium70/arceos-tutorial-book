@@ -17,7 +17,6 @@
   - [与具体 OS 无关的 crates](ch02-03.md)
   - [与具有 OS 相关的 modules](ch02-04.md)
 
-
 - [设计实现 helloworld unikernel](ch03-00.md)
 
   - [依靠 axhal 组件实现从系统引导到输出](ch03-01.md)
@@ -32,3 +31,7 @@
   - [协作式多任务相关的 crates/modules 组成](ch04-02.md)
   - [协作式多任务的框架设计](ch04-03.md)
   - [组装协作式多任务 unikernel](ch04-04.md)
+
+- [设计实现支持文件系统的 unikernel](ch07-00.md)
+
+- [设计实现支持网络的 unikernel](ch08-00.md)
