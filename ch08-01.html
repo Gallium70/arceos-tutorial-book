@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>设计实现支持网络的 unikernel - ArceOS Tutorial Book</title>
+        <title>组装网络 unikernel - ArceOS Tutorial Book</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li class="chapter-item expanded "><a href="ch08-00.html" class="active"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">6.1.</strong> 网络协议栈/网卡驱动的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">6.3.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">6.4.</strong> 组装网络 unikernel</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.1.</strong> 网络协议栈/网卡驱动的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.3.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.4.</strong> 组装网络 unikernel</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,20 +176,36 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="设计实现支持网络的-unikernel"><a class="header" href="#设计实现支持网络的-unikernel">设计实现支持网络的 unikernel</a></h1>
-<p>到目前为止，我们的操作系统已经能够存储和处理数据，但是在传输方面的能力还很弱。本章我们将研究如何将系统接入计算机网络，使其能够与其他计算机高效地通信。</p>
-<p>以接收网络数据的过程为例，根据网络的分层模型，网卡负责将物理层的信号转换为链路层帧交给软件，软件将链路层的帧按照链路层、网络层和传输层的协议栈（例如 TCP/IP）解析处理，将其中的数据再传递给应用（将协议栈甚至应用卸载到网卡硬件实现的设计不在本文讨论范围之内）。这一过程中，操作系统需要通过驱动配置网卡并与网卡交换数据，实现协议栈，为应用提供编程模型和接口（例如套接字 socket）——驱动、协议栈和应用接口正是让我们的 unikernel 支持网络所必需的三个组件。</p>
-<h2 id="动手尝试"><a class="header" href="#动手尝试">动手尝试</a></h2>
+                        <h1 id="网络协议栈网卡驱动的功能需求"><a class="header" href="#网络协议栈网卡驱动的功能需求">网络协议栈/网卡驱动的功能需求</a></h1>
+<h2 id="选择网络协议栈"><a class="header" href="#选择网络协议栈">选择网络协议栈</a></h2>
+<p>计算机网络协议种类繁多，作为 unikernel ，我们在满足应用需求的基础上，尽可能保持系统组件精简；另一方面，从组件化的角度出发，我们可以选择已有的较成熟的协议栈实现，减少重复开发工作。结合这两点，我们选择了 <a href="https://github.com/smoltcp-rs/smoltcp">smoltcp</a> 作为网络协议栈。 smoltcp 支持以太网, ARP/ND, IPv4/IPv6, ICMP/ICMPv6, TCP, UDP 等协议，可满足大部分应用的网络需求，在嵌入式和实时系统中得到广泛应用。smoltcp 提供了所需的<a href="https://docs.rs/smoltcp/latest/smoltcp/phy/index.html">网卡设备抽象接口</a>，我们在网卡驱动中实现该接口即可与协议栈整合。</p>
+<h2 id="网卡的运行模式"><a class="header" href="#网卡的运行模式">网卡的运行模式</a></h2>
+<p>常见的网卡通过 MMIO 或 PCI 等总线提供一组配置寄存器，通过一个或多个环形队列传递用于接收和发送数据的缓冲区描述符（包含地址、长度、编号等信息），数据平面由 DMA 访问对应的缓冲区传递数据。这一 I/O 模式也不仅局限于网卡，在硬盘、显卡等设备上也很常见。</p>
+<p>以 <code>virtio-net</code> 为例，下图是 <code>virtio-net</code> 的架构示意图：</p>
+<p><img src="assets/virtio-net.png" alt="vn" /></p>
+<p>我们的 unikernel 将运行在 Guest Kernel 的位置上。<code>descs</code> 中存储了若干缓冲区描述符，<code>avail</code> 和 <code>used</code> 是两个环形队列，分别用于内核向设备提交可用的描述符，以及设备将使用过的描述符返回给内核。</p>
+<h2 id="网卡驱动的功能"><a class="header" href="#网卡驱动的功能">网卡驱动的功能</a></h2>
+<p>网卡驱动发送数据包的典型过程如下：</p>
+<ol>
+<li>驱动构造缓冲区和描述符，存入 <code>desc</code> 表中；</li>
+<li>驱动将对应的缓冲区描述符写入 <code>avail</code> 队列；</li>
+<li>驱动通知设备有缓冲区可用；</li>
+<li>设备根据 <code>avail</code> 队列找到对应的缓冲区描述符，再根据描述符从内存中读取数据并发送（在图中“设备”由宿主机用户态的 Qemu 进程模拟）；</li>
+<li>设备将发送完成的描述符写入 <code>used</code> 队列；</li>
+<li>设备通知驱动发送完成；</li>
+<li>驱动从 <code>used</code> 队列中回收缓冲区。</li>
+</ol>
+<p>接收过程与上述基本相同，区别在于此时设备向缓冲区中写入收到的数据，而非从中读取。在这个过程中，网卡驱动需要维护缓冲区和队列的状态，并与协议栈交互。除此之外，还有些与具体网卡相关的初始化、配置等操作，这一部分需要根据网卡的硬件手册实现。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ch07-00.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch08-00.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="ch08-01.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ch08-02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -199,11 +215,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ch07-00.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch08-00.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="ch08-01.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ch08-02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
