@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>组装网络 unikernel - ArceOS Tutorial Book</title>
+        <title>网络框架的功能需求 - ArceOS Tutorial Book</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.1.</strong> 网络协议栈/网卡驱动的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.3.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.4.</strong> 组装网络 unikernel</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html" class="active"><strong aria-hidden="true">6.1.</strong> 网络框架的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-03.html"><strong aria-hidden="true">6.3.</strong> 组装网络 unikernel</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,16 +176,74 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="网络协议栈网卡驱动的功能需求"><a class="header" href="#网络协议栈网卡驱动的功能需求">网络协议栈/网卡驱动的功能需求</a></h1>
+                        <h1 id="网络框架的功能需求"><a class="header" href="#网络框架的功能需求">网络框架的功能需求</a></h1>
+<h2 id="网络应用接口"><a class="header" href="#网络应用接口">网络应用接口</a></h2>
+<p>回顾之前我们运行的 <code>udpserver</code> 样例应用：</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span>#![cfg_attr(feature = "axstd", no_std)]
+
+<span class="boring">fn main() {
+</span>#[macro_use]
+#[cfg(feature = "axstd")]
+extern crate axstd as std;
+
+use std::io;
+use std::net::{ToSocketAddrs, UdpSocket};
+<span class="boring">}</span></code></pre></pre>
+<p>初看起来似乎我们使用了 <code>std::net::UdpSocket</code> 等接口，但在启用了 <code>axstd</code> 特性的情况下，实际上使用的是 <code>ulib/axstd</code> 中的对应的接口。
+在 ArceOS 中，对于 Rust 应用，我们尽量提供与 <code>std</code> 等标准库相同的原生接口，对于 C 应用则通过 <code>ulib/axlibc</code> 提供 POSIX 接口，以提高应用兼容性。</p>
 <h2 id="选择网络协议栈"><a class="header" href="#选择网络协议栈">选择网络协议栈</a></h2>
-<p>计算机网络协议种类繁多，作为 unikernel ，我们在满足应用需求的基础上，尽可能保持系统组件精简；另一方面，从组件化的角度出发，我们可以选择已有的较成熟的协议栈实现，减少重复开发工作。结合这两点，我们选择了 <a href="https://github.com/smoltcp-rs/smoltcp">smoltcp</a> 作为网络协议栈。 smoltcp 支持以太网, ARP/ND, IPv4/IPv6, ICMP/ICMPv6, TCP, UDP 等协议，可满足大部分应用的网络需求，在嵌入式和实时系统中得到广泛应用。smoltcp 提供了所需的<a href="https://docs.rs/smoltcp/latest/smoltcp/phy/index.html">网卡设备抽象接口</a>，我们在网卡驱动中实现该接口即可与协议栈整合。</p>
+<p>计算机网络协议种类繁多，作为 unikernel ，我们在满足应用需求的基础上，尽可能保持系统组件精简；
+另一方面，从组件化的角度出发，我们可以选择已有的较成熟的协议栈实现，减少重复开发工作。
+结合这两点，我们选择了 <a href="https://github.com/smoltcp-rs/smoltcp">smoltcp</a> 作为网络协议栈。
+smoltcp 支持以太网, ARP/ND, IPv4/IPv6, ICMP/ICMPv6, TCP, UDP 等协议，可满足大部分应用的网络需求，在嵌入式和实时系统中得到广泛应用。
+smoltcp 提供了所需的<a href="https://docs.rs/smoltcp/latest/smoltcp/phy/index.html">网卡设备抽象接口</a>，我们在网卡驱动中实现该接口即可与协议栈整合：</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait Device {
+    type RxToken&lt;'a&gt;: RxToken
+       where Self: 'a;
+    type TxToken&lt;'a&gt;: TxToken
+       where Self: 'a;
+
+    // Required methods
+    fn receive(
+        &amp;mut self,
+        timestamp: Instant
+    ) -&gt; Option&lt;(Self::RxToken&lt;'_&gt;, Self::TxToken&lt;'_&gt;)&gt;;
+    fn transmit(&amp;mut self, timestamp: Instant) -&gt; Option&lt;Self::TxToken&lt;'_&gt;&gt;;
+    fn capabilities(&amp;self) -&gt; DeviceCapabilities;
+}
+
+pub trait RxToken {
+    // Required method
+    fn consume&lt;R, F&gt;(self, f: F) -&gt; R
+       where F: FnOnce(&amp;mut [u8]) -&gt; R;
+
+    // Provided method
+    fn meta(&amp;self) -&gt; PacketMeta { ... }
+}
+
+pub trait TxToken {
+    // Required method
+    fn consume&lt;R, F&gt;(self, len: usize, f: F) -&gt; R
+       where F: FnOnce(&amp;mut [u8]) -&gt; R;
+
+    // Provided method
+    fn set_meta(&amp;mut self, meta: PacketMeta) { ... }
+}
+<span class="boring">}</span></code></pre></pre>
+<p><code>Device</code> 接口需要驱动实现接收、发送和查询设备功能的函数。
+按照 smoltcp 的设计，接收和发送函数仅构造并返回对应的令牌 (<code>token</code>) ，直到令牌被消耗时才真正执行对应的接收和发送操作；</p>
 <h2 id="网卡的运行模式"><a class="header" href="#网卡的运行模式">网卡的运行模式</a></h2>
-<p>常见的网卡通过 MMIO 或 PCI 等总线提供一组配置寄存器，通过一个或多个环形队列传递用于接收和发送数据的缓冲区描述符（包含地址、长度、编号等信息），数据平面由 DMA 访问对应的缓冲区传递数据。这一 I/O 模式也不仅局限于网卡，在硬盘、显卡等设备上也很常见。</p>
+<p>常见的网卡通过 MMIO 或 PCI 等总线提供一组配置寄存器，通过一个或多个环形队列传递用于接收和发送数据的缓冲区描述符（包含地址、长度、编号等信息），数据平面由 DMA 访问对应的缓冲区传递数据。
+这一 I/O 模式也不仅局限于网卡，在硬盘、显卡等设备上也很常见。</p>
 <p>以 <code>virtio-net</code> 为例，下图是 <code>virtio-net</code> 的架构示意图：</p>
 <p><img src="assets/virtio-net.png" alt="vn" /></p>
-<p>我们的 unikernel 将运行在 Guest Kernel 的位置上。<code>descs</code> 中存储了若干缓冲区描述符，<code>avail</code> 和 <code>used</code> 是两个环形队列，分别用于内核向设备提交可用的描述符，以及设备将使用过的描述符返回给内核。</p>
+<p>我们的 unikernel 将运行在 Guest Kernel 的位置上。
+<code>descs</code> 中存储了若干缓冲区描述符，<code>avail</code> 和 <code>used</code> 是两个环形队列，分别用于内核向设备提交可用的描述符，以及设备将使用过的描述符返回给内核。</p>
 <h2 id="网卡驱动的功能"><a class="header" href="#网卡驱动的功能">网卡驱动的功能</a></h2>
-<p>网卡驱动发送数据包的典型过程如下：</p>
+<p>仍然以 <code>virtio-net</code> 为例，网卡驱动发送数据包的典型过程如下：</p>
 <ol>
 <li>驱动构造缓冲区和描述符，存入 <code>desc</code> 表中；</li>
 <li>驱动将对应的缓冲区描述符写入 <code>avail</code> 队列；</li>
@@ -195,7 +253,11 @@
 <li>设备通知驱动发送完成；</li>
 <li>驱动从 <code>used</code> 队列中回收缓冲区。</li>
 </ol>
-<p>接收过程与上述基本相同，区别在于此时设备向缓冲区中写入收到的数据，而非从中读取。在这个过程中，网卡驱动需要维护缓冲区和队列的状态，并与协议栈交互。除此之外，还有些与具体网卡相关的初始化、配置等操作，这一部分需要根据网卡的硬件手册实现。</p>
+<p>接收过程与上述基本相同，区别在于此时设备向缓冲区中写入收到的数据，而非从中读取。
+对于不同的网卡，队列的数量、描述符和命令的格式可能有区别
+（例如有的按数组基址+偏移下标来指示缓冲区，有的直接传递地址指针，有的支持散布-收集 (scatter-gather) 的缓冲区），
+但整体的操作逻辑大同小异。
+除此之外，还有些与具体网卡相关的初始化、配置等操作，这一部分需要根据网卡的硬件手册实现。</p>
 
                     </main>
 
