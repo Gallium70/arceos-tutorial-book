@@ -36,7 +36,7 @@
 
 - [设计实现支持网络的 unikernel](ch08-00.md)
 
-  - [网络协议栈/网卡驱动的功能需求](ch08-01.md)
+  - [网络框架的功能需求](ch08-01.md)
   - [网络相关的 crates/modules 组成](ch08-02.md)
   - [网络 unikernel 的框架设计](ch08-01.md)
   - [组装网络 unikernel](ch08-01.md)
