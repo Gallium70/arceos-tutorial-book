@@ -18,7 +18,7 @@
   - [与具有 OS 相关的 modules](ch02-04.md)
 
 
-- [设计实现 helloworld unikernel](ch03-00.md)
+- [设计实现 Hello World Unikernel](ch03-00.md)
 
   - [依靠 axhal 组件实现从系统引导到输出](ch03-01.md)
   - [helloworld 程序基于 axhal 组件实现输出](ch03-02.md)
@@ -30,3 +30,5 @@
   - [module: axtask](ch04-01.md)
   - [crate: scheduler](ch04-02.md)
   - [多任务调度应用](ch04-03.md)
+
+- [设计实现支持内存管理的 Unikernel](ch05-00.md)
