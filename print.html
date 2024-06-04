@@ -1279,9 +1279,66 @@ pub trait TxToken {
     C_app --&gt; |POSIX| axlibc
     end
 </pre>
+<h2 id="网络应用接口-1"><a class="header" href="#网络应用接口-1">网络应用接口</a></h2>
+<p>为了提高兼容性和性能，ArceOS 提供了 Rust 原生接口 (<code>arceos_api</code>) 和 POSIX (<code>arceos_posix_api</code>) 两套 API ，
+前者通过 <code>axstd</code> 转换为类 <code>std</code> 接口，后者则通过 <code>axlibc</code> 转换为类标准 C 库的接口。
+对于网络部分，二者则统一基于 <code>axnet</code> module 提供的 <code>TcpSocket</code> 和 <code>UdpSocket</code> 封装实现，
+这两个结构体又由 <code>axnet</code> 对协议栈 (smoltcp) 提供的类 Socket 接口封装而来。</p>
+<p>以 <code>arceos_api</code> 为例，与网络相关的部分接口定义如下：</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Networking primitives for TCP/UDP communication.
+pub mod net {
+    define_api_type! {
+        @cfg "net";
+        pub type AxTcpSocketHandle;
+        pub type AxUdpSocketHandle;
+    }
+
+    define_api! {
+        @cfg "net";
+        // TCP socket
+
+        /// Creates a new TCP socket.
+        pub fn ax_tcp_socket() -&gt; AxTcpSocketHandle;
+        /// Returns the local address and port of the TCP socket.
+        pub fn ax_tcp_socket_addr(socket: &amp;AxTcpSocketHandle) -&gt; AxResult&lt;SocketAddr&gt;;
+        /// Returns the remote address and port of the TCP socket.
+        pub fn ax_tcp_peer_addr(socket: &amp;AxTcpSocketHandle) -&gt; AxResult&lt;SocketAddr&gt;;
+        /// Moves this TCP socket into or out of nonblocking mode.
+        pub fn ax_tcp_set_nonblocking(socket: &amp;AxTcpSocketHandle, nonblocking: bool) -&gt; AxResult;
+
+        /// Connects the TCP socket to the given address and port.
+        pub fn ax_tcp_connect(handle: &amp;AxTcpSocketHandle, addr: SocketAddr) -&gt; AxResult;
+        /// Binds the TCP socket to the given address and port.
+        pub fn ax_tcp_bind(socket: &amp;AxTcpSocketHandle, addr: SocketAddr) -&gt; AxResult;
+        /// Starts listening on the bound address and port.
+        pub fn ax_tcp_listen(socket: &amp;AxTcpSocketHandle, _backlog: usize) -&gt; AxResult;
+        /// Accepts a new connection on the TCP socket.
+        ///
+        /// This function will block the calling thread until a new TCP connection
+        /// is established. When established, a new TCP socket is returned.
+        pub fn ax_tcp_accept(socket: &amp;AxTcpSocketHandle) -&gt; AxResult&lt;(AxTcpSocketHandle, SocketAddr)&gt;;
+
+        /// Transmits data in the given buffer on the TCP socket.
+        pub fn ax_tcp_send(socket: &amp;AxTcpSocketHandle, buf: &amp;[u8]) -&gt; AxResult&lt;usize&gt;;
+        /// Receives data on the TCP socket, and stores it in the given buffer.
+        /// On success, returns the number of bytes read.
+        pub fn ax_tcp_recv(socket: &amp;AxTcpSocketHandle, buf: &amp;mut [u8]) -&gt; AxResult&lt;usize&gt;;
+        /// Returns whether the TCP socket is readable or writable.
+        pub fn ax_tcp_poll(socket: &amp;AxTcpSocketHandle) -&gt; AxResult&lt;AxPollState&gt;;
+        /// Closes the connection on the TCP socket.
+        pub fn ax_tcp_shutdown(socket: &amp;AxTcpSocketHandle) -&gt; AxResult;
+
+        ...
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>其中 <code>define_api</code> 和 <code>define_api_type</code> 可以根据 <code>@cfg</code> 提供的特性名称，生成基于特性的条件编译代码。</p>
 <h2 id="网卡驱动框架"><a class="header" href="#网卡驱动框架">网卡驱动框架</a></h2>
 <p>尽管 smoltcp 提供了 <code>Device</code> 设备抽象，但我们的驱动并不直接实现该接口。
-在 ArceOS 中，网卡驱动的功能被抽象为一组 <code>NetDriverOps</code> 抽象接口，包含缓冲区管理和数据收发等操作：</p>
+在 ArceOS 中，网卡驱动的功能被抽象为一组 <code>NetDriverOps</code> 抽象接口，包含缓冲区管理和数据收发等操作。
+这些接口定义在 <code>driver_net</code> crate 中，由 <code>axdriver</code> module 包装成 <code>AxNetDevice</code> 网络设备模型，再在 <code>axnet</code> module 中适配 smoltcp 的设备抽象接口。</p>
 <pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
 </span>/// Operations that require a network device (NIC) driver to implement.
@@ -1330,7 +1387,6 @@ pub trait NetDriverOps: BaseDriverOps {
     fn alloc_tx_buffer(&amp;mut self, size: usize) -&gt; DevResult&lt;NetBufPtr&gt;;
 }
 <span class="boring">}</span></code></pre></pre>
-<p>这些接口定义在 <code>driver_net</code> crate 中，由 <code>axdriver</code> module 包装成 <code>AxNetDevice</code> 网络设备模型，再在 <code>axnet</code> module 中适配 smoltcp 的设备抽象接口。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="网络-unikernel-的框架设计-1"><a class="header" href="#网络-unikernel-的框架设计-1">网络 unikernel 的框架设计</a></h1>
 
                     </main>
