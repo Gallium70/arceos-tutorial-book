@@ -177,7 +177,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="网络-unikernel-的框架设计"><a class="header" href="#网络-unikernel-的框架设计">网络 unikernel 的框架设计</a></h1>
-<p>与网络相关的 crates 和 modules 如下：</p>
+<p>上一节中我们以 smoltcp 和 virtio-net 为例，介绍了应用接口、网络协议栈和网卡驱动的功能需求。
+但作为一个组件化的操作系统，我们并不局限于仅支持一个协议栈或是一两种网卡，因此还需要通过合适的抽象和拆分，为不同的中间组件和应用提供统一的接口。</p>
+<p>ArceOS 中与网络相关的 crates 和 modules 如下：</p>
 <ul>
 <li>crates
 <ul>
@@ -238,6 +240,58 @@
     C_app --&gt; |POSIX| axlibc
     end
 </pre>
+<h2 id="网卡驱动框架"><a class="header" href="#网卡驱动框架">网卡驱动框架</a></h2>
+<p>尽管 smoltcp 提供了 <code>Device</code> 设备抽象，但我们的驱动并不直接实现该接口。
+在 ArceOS 中，网卡驱动的功能被抽象为一组 <code>NetDriverOps</code> 抽象接口，包含缓冲区管理和数据收发等操作：</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Operations that require a network device (NIC) driver to implement.
+pub trait NetDriverOps: BaseDriverOps {
+    /// The ethernet address of the NIC.
+    fn mac_address(&amp;self) -&gt; EthernetAddress;
+
+    /// Whether can transmit packets.
+    fn can_transmit(&amp;self) -&gt; bool;
+
+    /// Whether can receive packets.
+    fn can_receive(&amp;self) -&gt; bool;
+
+    /// Size of the receive queue.
+    fn rx_queue_size(&amp;self) -&gt; usize;
+
+    /// Size of the transmit queue.
+    fn tx_queue_size(&amp;self) -&gt; usize;
+
+    /// Gives back the `rx_buf` to the receive queue for later receiving.
+    ///
+    /// `rx_buf` should be the same as the one returned by
+    /// [`NetDriverOps::receive`].
+    fn recycle_rx_buffer(&amp;mut self, rx_buf: NetBufPtr) -&gt; DevResult;
+
+    /// Poll the transmit queue and gives back the buffers for previous transmiting.
+    /// returns [`DevResult`].
+    fn recycle_tx_buffers(&amp;mut self) -&gt; DevResult;
+
+    /// Transmits a packet in the buffer to the network, without blocking,
+    /// returns [`DevResult`].
+    fn transmit(&amp;mut self, tx_buf: NetBufPtr) -&gt; DevResult;
+
+    /// Receives a packet from the network and store it in the [`NetBuf`],
+    /// returns the buffer.
+    ///
+    /// Before receiving, the driver should have already populated some buffers
+    /// in the receive queue by [`NetDriverOps::recycle_rx_buffer`].
+    ///
+    /// If currently no incomming packets, returns an error with type
+    /// [`DevError::Again`].
+    fn receive(&amp;mut self) -&gt; DevResult&lt;NetBufPtr&gt;;
+
+    /// Allocate a memory buffer of a specified size for network transmission,
+    /// returns [`DevResult`]
+    fn alloc_tx_buffer(&amp;mut self, size: usize) -&gt; DevResult&lt;NetBufPtr&gt;;
+}
+<span class="boring">}</span></code></pre></pre>
+<p>这些接口定义在 <code>driver_net</code> crate 中，由 <code>axdriver</code> module 包装成 <code>AxNetDevice</code> 网络设备模型，再在 <code>axnet</code> module 中适配 smoltcp 的设备抽象接口。</p>
 
                     </main>
 

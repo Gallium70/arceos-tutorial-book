@@ -1075,8 +1075,14 @@ test_one "SMP=4 LOG=info APP_FEATURES=sched_cfs" "expect_info_smp4_cfs.out"
 <p>上一小节我们已经通过<code>yield</code>和<code>priority</code>初步了解了实现协作式多任务所需的crates和modules，相信有操作系统学习经验的读者也应该对这些算法有基本的了解。ArceOS以它的组件化和定制化见长，核心的设计亮点则是它的框架。本节将以<code>parallel</code>和<code>sleep</code>两个协作式核心应用的实现为基础介绍这部分unikernel的框架设计。</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="组装协作式多任务unikernel"><a class="header" href="#组装协作式多任务unikernel">组装协作式多任务unikernel</a></h2>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="设计实现支持网络的-unikernel"><a class="header" href="#设计实现支持网络的-unikernel">设计实现支持网络的 unikernel</a></h1>
-<p>到目前为止，我们的操作系统已经能够存储和处理数据，但是在传输方面的能力还很弱。本章我们将研究如何将系统接入计算机网络，使其能够与其他计算机高效地通信。</p>
-<p>以接收网络数据的过程为例，根据网络的分层模型，网卡负责将物理层的信号转换为链路层帧交给软件，软件将链路层的帧按照链路层、网络层和传输层的协议栈（例如 TCP/IP）解析处理，将其中的数据再传递给应用（将协议栈甚至应用卸载到网卡硬件实现的设计不在本文讨论范围之内）。这一过程中，操作系统需要通过驱动配置网卡并与网卡交换数据，实现协议栈，为应用提供编程模型和接口（例如套接字 socket）——驱动、协议栈和应用接口正是让我们的 unikernel 支持网络所必需的三个组件。</p>
+<p>到目前为止，我们的操作系统已经能够存储和处理数据，但是在传输方面的能力还很弱。
+本章我们将研究如何将系统接入计算机网络，使其能够与其他计算机高效地通信。</p>
+<p>与先前介绍的其他组件不同，网络有较为成熟的模型、协议和接口规范。
+以接收网络数据的过程为例，根据网络的分层模型，网卡负责将物理层的信号转换为链路层帧交给软件，
+软件将链路层的帧按照链路层、网络层和传输层的协议栈（例如 TCP/IP）解析处理，将其中的数据再传递给应用
+（将协议栈甚至应用卸载到网卡硬件实现的设计不在本文讨论范围之内）。
+这一过程中，操作系统需要通过驱动配置网卡并与网卡交换数据，实现协议栈，为应用提供编程模型和接口
+（例如套接字 socket）——驱动、协议栈和应用接口正是让我们的 unikernel 支持网络所必需的三个组件。</p>
 <h2 id="动手尝试-5"><a class="header" href="#动手尝试-5">动手尝试</a></h2>
 <p>在 ArceOS 中有多个支持网络的样例应用，位于 <code>apps/net</code> 路径中，其中较为简单的一个是 <code>udpserver</code> ，
 它会监听 UDP 5555 端口，将收到的数据在终端打印出来，并在开头加上 <code>response_</code> 之后通过 UDP 回传：</p>
@@ -1140,8 +1146,8 @@ extern crate axstd as std;
 use std::io;
 use std::net::{ToSocketAddrs, UdpSocket};
 <span class="boring">}</span></code></pre></pre>
-<p>初看起来似乎我们使用了 <code>std::net::UdpSocket</code> 等接口，但在启用了 <code>axstd</code> 特性的情况下，实际上使用的是 <code>ulib/axstd</code> 中的对应的接口。
-在 ArceOS 中，对于 Rust 应用，我们尽量提供与 <code>std</code> 等标准库相同的原生接口，对于 C 应用则通过 <code>ulib/axlibc</code> 提供 POSIX 接口，以提高应用兼容性。</p>
+<p>初看起来似乎我们使用了标准库 <a href="https://doc.rust-lang.org/std/net/index.html"><code>std::net</code></a> 中的接口，但在启用了 <code>axstd</code> 特性的情况下，实际上使用的是 <code>ulib/axstd</code> 中的对应的接口。
+在 ArceOS 中，对于 Rust 应用，我们尽量提供与 <code>std</code> 等标准库相同的 Rust 原生接口，对于 C 应用则通过 <code>ulib/axlibc</code> 提供 POSIX 接口，以提高应用兼容性。</p>
 <h2 id="选择网络协议栈"><a class="header" href="#选择网络协议栈">选择网络协议栈</a></h2>
 <p>计算机网络协议种类繁多，作为 unikernel ，我们在满足应用需求的基础上，尽可能保持系统组件精简；
 另一方面，从组件化的角度出发，我们可以选择已有的较成熟的协议栈实现，减少重复开发工作。
@@ -1184,7 +1190,8 @@ pub trait TxToken {
 }
 <span class="boring">}</span></code></pre></pre>
 <p><code>Device</code> 接口需要驱动实现接收、发送和查询设备功能的函数。
-按照 smoltcp 的设计，接收和发送函数仅构造并返回对应的令牌 (<code>token</code>) ，直到令牌被消耗时才真正执行对应的接收和发送操作；</p>
+按照 smoltcp 的设计，接收和发送函数仅构造并返回对应的令牌 (<code>token</code>) ，直到令牌被消耗时才真正执行对应的接收和发送操作。
+对于上层应用，smoltcp 则提供了类 socket 接口。</p>
 <h2 id="网卡的运行模式"><a class="header" href="#网卡的运行模式">网卡的运行模式</a></h2>
 <p>常见的网卡通过 MMIO 或 PCI 等总线提供一组配置寄存器，通过一个或多个环形队列传递用于接收和发送数据的缓冲区描述符（包含地址、长度、编号等信息），数据平面由 DMA 访问对应的缓冲区传递数据。
 这一 I/O 模式也不仅局限于网卡，在硬盘、显卡等设备上也很常见。</p>
@@ -1209,7 +1216,9 @@ pub trait TxToken {
 但整体的操作逻辑大同小异。
 除此之外，还有些与具体网卡相关的初始化、配置等操作，这一部分需要根据网卡的硬件手册实现。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="网络-unikernel-的框架设计"><a class="header" href="#网络-unikernel-的框架设计">网络 unikernel 的框架设计</a></h1>
-<p>与网络相关的 crates 和 modules 如下：</p>
+<p>上一节中我们以 smoltcp 和 virtio-net 为例，介绍了应用接口、网络协议栈和网卡驱动的功能需求。
+但作为一个组件化的操作系统，我们并不局限于仅支持一个协议栈或是一两种网卡，因此还需要通过合适的抽象和拆分，为不同的中间组件和应用提供统一的接口。</p>
+<p>ArceOS 中与网络相关的 crates 和 modules 如下：</p>
 <ul>
 <li>crates
 <ul>
@@ -1270,6 +1279,58 @@ pub trait TxToken {
     C_app --&gt; |POSIX| axlibc
     end
 </pre>
+<h2 id="网卡驱动框架"><a class="header" href="#网卡驱动框架">网卡驱动框架</a></h2>
+<p>尽管 smoltcp 提供了 <code>Device</code> 设备抽象，但我们的驱动并不直接实现该接口。
+在 ArceOS 中，网卡驱动的功能被抽象为一组 <code>NetDriverOps</code> 抽象接口，包含缓冲区管理和数据收发等操作：</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// Operations that require a network device (NIC) driver to implement.
+pub trait NetDriverOps: BaseDriverOps {
+    /// The ethernet address of the NIC.
+    fn mac_address(&amp;self) -&gt; EthernetAddress;
+
+    /// Whether can transmit packets.
+    fn can_transmit(&amp;self) -&gt; bool;
+
+    /// Whether can receive packets.
+    fn can_receive(&amp;self) -&gt; bool;
+
+    /// Size of the receive queue.
+    fn rx_queue_size(&amp;self) -&gt; usize;
+
+    /// Size of the transmit queue.
+    fn tx_queue_size(&amp;self) -&gt; usize;
+
+    /// Gives back the `rx_buf` to the receive queue for later receiving.
+    ///
+    /// `rx_buf` should be the same as the one returned by
+    /// [`NetDriverOps::receive`].
+    fn recycle_rx_buffer(&amp;mut self, rx_buf: NetBufPtr) -&gt; DevResult;
+
+    /// Poll the transmit queue and gives back the buffers for previous transmiting.
+    /// returns [`DevResult`].
+    fn recycle_tx_buffers(&amp;mut self) -&gt; DevResult;
+
+    /// Transmits a packet in the buffer to the network, without blocking,
+    /// returns [`DevResult`].
+    fn transmit(&amp;mut self, tx_buf: NetBufPtr) -&gt; DevResult;
+
+    /// Receives a packet from the network and store it in the [`NetBuf`],
+    /// returns the buffer.
+    ///
+    /// Before receiving, the driver should have already populated some buffers
+    /// in the receive queue by [`NetDriverOps::recycle_rx_buffer`].
+    ///
+    /// If currently no incomming packets, returns an error with type
+    /// [`DevError::Again`].
+    fn receive(&amp;mut self) -&gt; DevResult&lt;NetBufPtr&gt;;
+
+    /// Allocate a memory buffer of a specified size for network transmission,
+    /// returns [`DevResult`]
+    fn alloc_tx_buffer(&amp;mut self, size: usize) -&gt; DevResult&lt;NetBufPtr&gt;;
+}
+<span class="boring">}</span></code></pre></pre>
+<p>这些接口定义在 <code>driver_net</code> crate 中，由 <code>axdriver</code> module 包装成 <code>AxNetDevice</code> 网络设备模型，再在 <code>axnet</code> module 中适配 smoltcp 的设备抽象接口。</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="网络-unikernel-的框架设计-1"><a class="header" href="#网络-unikernel-的框架设计-1">网络 unikernel 的框架设计</a></h1>
 
                     </main>
