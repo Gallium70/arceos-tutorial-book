@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>ArceOS 框架设计 - ArceOS Tutorial Book</title>
+        <title>文件系统的功能需求 - ArceOS Tutorial Book</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html" class="active"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01.html"><strong aria-hidden="true">5.1.</strong> 文件系统的功能需求</a></li><li class="chapter-item expanded "><a href="ch07-02.html"><strong aria-hidden="true">5.2.</strong> 文件系统的框架设计</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">6.1.</strong> 网络框架的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-03.html"><strong aria-hidden="true">6.3.</strong> 组装网络 unikernel</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01.html" class="active"><strong aria-hidden="true">5.1.</strong> 文件系统的功能需求</a></li><li class="chapter-item expanded "><a href="ch07-02.html"><strong aria-hidden="true">5.2.</strong> 文件系统的框架设计</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">6.1.</strong> 网络框架的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-03.html"><strong aria-hidden="true">6.3.</strong> 组装网络 unikernel</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,62 +176,33 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="arceos-框架设计"><a class="header" href="#arceos-框架设计">ArceOS 框架设计</a></h2>
-<p>ArceOS的整体架构如下所示：</p>
-<img src="./assets/ArceOS.svg" />
-<p>ArceOS 是一个开源的、组件化的Unikernel。以组合组件库的方式构建系统。使用Rust开发。</p>
-<p>具有一下特点和功能:</p>
-<ul>
-<li>CPU架构: x86_64, riscv64, aarch64</li>
-<li>运行平台: QEMU pc-q35 (x86_64), virt (riscv64/aarch64)</li>
-<li>支持多线程: Multi-thread</li>
-<li>调度算法: FIFO/RR/CFS scheduler</li>
-<li>虚拟IO: VirtIO net/blk/gpu drivers</li>
-<li>网络协议: TCP/UDP net stack using smoltcp</li>
-<li>同步/互斥: Synchronization/Mutex</li>
-<li>SMP调度: SMP scheduling with single run queue</li>
-<li>文件系统: File system</li>
-</ul>
-<h3 id="arceos-由appscratesmodules组成"><a class="header" href="#arceos-由appscratesmodules组成">ArceOS 由apps、crates、modules组成</a></h3>
-<ul>
-<li>apps: 应用程序。它的运行需要依赖于modules组件库。</li>
-<li>modules: ArceOS的组件库。</li>
-<li>crates: 通用的基础库。为modules实现提供支持。</li>
-</ul>
-<p>当前ArceOS项目的apps列表如下:</p>
-<h4 id="applications-rust"><a class="header" href="#applications-rust">Applications (Rust)</a></h4>
-<div class="table-wrapper"><table><thead><tr><th>App</th><th>Extra modules</th><th>Enabled features</th><th>Description</th></tr></thead><tbody>
-<tr><td><a href="../apps/helloworld/">helloworld</a></td><td></td><td></td><td>A minimal app that just prints a string</td></tr>
-<tr><td><a href="../apps/exception/">exception</a></td><td></td><td>paging</td><td>Exception handling test</td></tr>
-<tr><td><a href="../apps/memtest/">memtest</a></td><td>axalloc</td><td>alloc, paging</td><td>Dynamic memory allocation test</td></tr>
-<tr><td><a href="../apps/display/">display</a></td><td>axalloc, axdisplay</td><td>alloc, paging, display</td><td>Graphic/GUI test</td></tr>
-<tr><td><a href="../apps/task/yield/">yield</a></td><td>axalloc, axtask</td><td>alloc, paging, multitask, sched_fifo</td><td>Multi-threaded yielding test</td></tr>
-<tr><td><a href="../apps/task/parallel/">parallel</a></td><td>axalloc, axtask</td><td>alloc, paging, multitask, sched_fifo, irq</td><td>Parallel computing test (to test synchronization &amp; mutex)</td></tr>
-<tr><td><a href="../apps/task/sleep/">sleep</a></td><td>axalloc, axtask</td><td>alloc, paging, multitask, sched_fifo, irq</td><td>Thread sleeping test</td></tr>
-<tr><td><a href="../apps/task/priority/">priority</a></td><td>axalloc, axtask</td><td>alloc, paging, multitask, sched_cfs</td><td>Thread priority test</td></tr>
-<tr><td><a href="../apps/fs/shell/">shell</a></td><td>axalloc, axdriver, axfs</td><td>alloc, paging, fs</td><td>A simple shell that responds to filesystem operations</td></tr>
-<tr><td><a href="../apps/net/httpclient/">httpclient</a></td><td>axalloc, axdriver, axnet</td><td>alloc, paging, net</td><td>A simple client that sends an HTTP request and then prints the response</td></tr>
-<tr><td><a href="../apps/net/echoserver/">echoserver</a></td><td>axalloc, axdriver, axnet, axtask</td><td>alloc, paging, net, multitask</td><td>A multi-threaded TCP server that reverses messages sent by the client</td></tr>
-<tr><td><a href="../apps/net/httpserver/">httpserver</a></td><td>axalloc, axdriver, axnet, axtask</td><td>alloc, paging, net, multitask</td><td>A multi-threaded HTTP server that serves a static web page</td></tr>
-<tr><td><a href="../apps/net/udpserver/">udpserver</a></td><td>axalloc, axdriver, axnet</td><td>alloc, paging, net</td><td>A simple echo server using UDP protocol</td></tr>
-</tbody></table>
-</div>
-<h4 id="applications-c"><a class="header" href="#applications-c">Applications (C)</a></h4>
-<div class="table-wrapper"><table><thead><tr><th>App</th><th>Extra modules</th><th>Enabled features</th><th>Description</th></tr></thead><tbody>
-<tr><td><a href="../apps/c/helloworld/">helloworld</a></td><td></td><td></td><td>A minimal C app that just prints a string</td></tr>
-<tr><td><a href="../apps/c/memtest/">memtest</a></td><td>axalloc</td><td>alloc, paging</td><td>Dynamic memory allocation test in C</td></tr>
-<tr><td><a href="../apps/c/sqlite3/">sqlite3</a></td><td>axalloc, axdriver, axfs</td><td>alloc, paging, fp_simd, fs</td><td>Porting of <a href="https://sqlite.org/index.html">SQLite3</a></td></tr>
-</tbody></table>
-</div>
+                        <h1 id="文件系统的功能需求"><a class="header" href="#文件系统的功能需求">文件系统的功能需求</a></h1>
+<h2 id="posix-兼容与更快速便捷的-api"><a class="header" href="#posix-兼容与更快速便捷的-api">POSIX 兼容与更快速便捷的 API</a></h2>
+<p>POSIX 定义了一套操作文件的系统接口，例如 <code>open(path, flag), close(fd), read(fd, buf, nbyte), write(fd, buf, nbyte), fsync(fd)</code> 等，包括 Linux 在内的诸多系统均采用了这些接口。
+不同的编程语言通常会对这些接口二次封装，例如 C++ 中的 <code>std::fstream</code>, Python 的 <code>file</code> 对象，以及 Rust 的 <code>std::fs::File</code> 等。
+它们能够与编程语言的资源管理、错误处理等机制和特性结合得更紧密，从而提供更良好的开发体验，例如依靠资源获取即初始化 (RAII) 或是垃圾回收 (GC) 等机制，在文件对象析构时自动调用 <code>close</code> 接口关闭文件，无需开发者手动关闭。</p>
+<p>额外的封装和抽象常常以性能为代价，如 Rust 的标准库仍需调用 libc 的库函数，再调用 POSIX 的文件系统调用接口，相比 C 程序的调用路径更长。
+而 unikernel 的架构提供了重新思考和设计这些系统接口的机遇。
+内核与应用直接链接为一个完整的可执行程序，不需要通过二进制接口跨越特权级和地址空间的边界，而是可以直接调用内核函数。</p>
+<p>在 ArceOS 中，我们采用与 Rust 标准库相同的文件 API, Rust 语言开发的应用调用时可以直接返回内核的文件对象。
+这样不仅去掉了对 POSIX 接口额外的封装带来的开销，还可以利用 Rust 的众多高级语言特性，例如通过 RAII 避免资源泄漏、所有权机制在编译期检查并发冲突、<code>async/await</code> 的异步编程等。</p>
+<p>为了兼容已有的 C 或其他语言编写的应用，ArceOS 也需要提供 POSIX API，并在具体实现上有所优化，但效果并不如 Rust 的显著。</p>
+<h2 id="文件系统与虚拟文件系统"><a class="header" href="#文件系统与虚拟文件系统">文件系统与虚拟文件系统</a></h2>
+<p>ArceOS 需要为不同的文件系统提供统一的接口，而具体的文件系统只需包装实现这套接口即可接入 ArceOS 。
+此外，按照 Unix/Linux “一切皆文件”的设计哲学，便于系统管理，ArceOS 还需要实现进程文件系统 procfs ，设备文件系统 devfs 等。</p>
+<h2 id="块设备驱动"><a class="header" href="#块设备驱动">块设备驱动</a></h2>
+<p>从文件系统的角度，块设备通常是提供一段连续的编号，每个编号对应一个固定大小的数据块，对于驱动而言就至少需要提供查询块大小和块数量，读取、写入特定编号的块的功能。
+这也是我们首次在 ArceOS 中引入设备驱动，因此除了具体的块设备之外，我们还需要一套驱动框架，对各类驱动进行抽象和封装。</p>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="ch02-01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ch07-00.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="ch02-03.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ch07-02.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -241,11 +212,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="ch02-01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ch07-00.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="ch02-03.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ch07-02.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
