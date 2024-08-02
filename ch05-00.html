@@ -1,0 +1,343 @@
+<!DOCTYPE HTML>
+<html lang="cn" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>设计实现支持内存管理的 Unikernel - ArceOS Tutorial Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 Hello World Unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现支持多任务调度的 Unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> module: axtask</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> crate: scheduler</a></li><li class="chapter-item expanded "><a href="ch04-03.html"><strong aria-hidden="true">4.3.</strong> 多任务调度应用</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00.html" class="active"><strong aria-hidden="true">5.</strong> 设计实现支持内存管理的 Unikernel</a></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持文件系统的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01.html"><strong aria-hidden="true">6.1.</strong> 文件系统的功能需求</a></li><li class="chapter-item expanded "><a href="ch07-02.html"><strong aria-hidden="true">6.2.</strong> 文件系统的框架设计</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">7.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">7.1.</strong> 网络框架的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">7.2.</strong> 网络 unikernel 的框架设计</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">ArceOS Tutorial Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/rcore-os/arceos-tutorial-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="设计实现支持内存管理的-unikernel"><a class="header" href="#设计实现支持内存管理的-unikernel">设计实现支持内存管理的 Unikernel</a></h2>
+<p>本节简要介绍虚拟内存管理和动态内存分配的实现和模块化设计思路，建议阅读代码和注释深入了解这部分内容。</p>
+<h3 id="虚拟内存"><a class="header" href="#虚拟内存">虚拟内存</a></h3>
+<p>硬件抽象层（Hardware Abstraction Layer，HAL）是软件和硬件之间的一个抽象层，用于屏蔽硬件的具体细节，使得上层应用软件和操作系统可以独立于底层硬件进行开发。HAL的主要目的是通过提供统一的接口来简化硬件驱动程序的开发，从而提高系统的可移植性和灵活性。</p>
+<p>为支持不同硬件平台，arceos 实现了 axhal module，目前支持如下平台（可通过 cargo feature 指定）：</p>
+<ul>
+<li><code>x86-pc</code>：标准的 x86 64位 PC；</li>
+<li><code>riscv64-qemu-virt</code>：QEMU 虚拟机的 RISC-V virt 平台；</li>
+<li><code>aarch64-qemu-virt</code>：QEMU 虚拟机上的 AArch64 virt 平台；</li>
+<li><code>aarch64-raspi</code>：使用 AArch64 ISA 的树莓派；</li>
+<li><code>dummy</code>：如果没有选择上述任何平台，将使用 dummy 平台。在该平台中，大多数操作都是 no-op 或 <code>unimplemented!()</code>。</li>
+</ul>
+<p>此外，axhal 针对不同功能的实现的 cargo feature 如下：</p>
+<ul>
+<li><code>smp</code>：启用 SMP（对称多处理）支持。</li>
+<li><code>fp_simd</code>：启用浮点和 SIMD 支持。</li>
+<li><code>paging</code>：启用页表操作。</li>
+<li><code>irq</code>：启用中断处理支持。</li>
+</ul>
+<p>这个 crate 提供了用于各种硬件架构的通用、统一、架构无关且与操作系统无关的页表结构。</p>
+<p>核心结构是 [<code>PageTable64&lt;M, PTE, IF&gt;</code>]。操作系统功能和架构相关类型通过泛型参数提供：</p>
+<ul>
+<li><code>M</code>：架构相关的元数据，需要实现 [<code>PagingMetaData</code>] trait。</li>
+<li><code>PTE</code>：架构相关的页表条目，需要实现 [<code>GenericPTE</code>] trait。</li>
+<li><code>IF</code>：操作系统功能，如物理内存分配，需要实现 [<code>PagingIf</code>] trait。</li>
+</ul>
+<p>当前支持的架构和页表结构：</p>
+<p>arceos 支持如下 crate 来支持不同架构的内存管理：</p>
+<ul>
+<li>page_table：用于各种硬件架构的通用、统一、架构无关且与操作系统无关的页表结构，支持 x86，ARM 和 RISC-V 三种架构的页表。</li>
+<li>page_table_entry：定义各种架构的页表项格式。</li>
+<li>memory_addr：定义物理地址和虚拟地址的类型，并提供一些关于地址的操作例如 align 等。</li>
+</ul>
+<p>page_table 定义了 <code>PagingMetaData</code> 和 <code>PagingIf</code> 两个 trait 用于不同架构；此外还定义了 <code>PageTable64</code> 通用页表结构，其中包含了根目录地址。<code>PageTable64</code> 传入了三个类型参数，第二个关于 GenericPTE 的实现位于 page_table_entry 这个 crate 。</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait PagingMetaData: Sync + Send + Sized {
+    const LEVELS: usize;
+    const PA_MAX_BITS: usize;
+    const VA_MAX_BITS: usize;
+
+    const PA_MAX_ADDR: usize = (1 &lt;&lt; Self::PA_MAX_BITS) - 1;
+
+    fn paddr_is_valid(paddr: usize) -&gt; bool {
+        paddr &lt;= Self::PA_MAX_ADDR
+    }
+
+    fn vaddr_is_valid(vaddr: usize) -&gt; bool {
+        let top_mask = usize::MAX &lt;&lt; (Self::VA_MAX_BITS - 1);
+        (vaddr &amp; top_mask) == 0 || (vaddr &amp; top_mask) == top_mask
+    }
+}
+pub trait PagingIf: Sized {
+    fn alloc_frame() -&gt; Option&lt;PhysAddr&gt;;
+    fn dealloc_frame(paddr: PhysAddr);
+    fn phys_to_virt(paddr: PhysAddr) -&gt; VirtAddr;
+}
+pub struct PageTable64&lt;M: PagingMetaData, PTE: GenericPTE, IF: PagingIf&gt; {
+    root_paddr: PhysAddr,
+    intrm_tables: Vec&lt;PhysAddr&gt;,
+    _phantom: PhantomData&lt;(M, PTE, IF)&gt;,
+}
+<span class="boring">}</span></code></pre></pre>
+<p><code>PagingMetaData</code> 定义了地址最大位数，页表级数等元信息，<code>PagingIf</code> 暴露了三个函数接口：</p>
+<ul>
+<li><code>alloc_frame</code> 用于申请一个物理页帧，并返回物理地址（<code>PhysAddr</code>）；</li>
+<li><code>dealloc_frame</code> 用于释放一个已分配的物理页帧；</li>
+<li><code>phys_to_virt</code> 用于将物理地址转换为虚拟地址（<code>VirtAddr</code>），以便在页表实现中直接访问物理内存。</li>
+</ul>
+<p>例如在 RISC-V 架构中：</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[derive(Clone, Copy)]
+pub struct Sv39MetaData;
+impl const PagingMetaData for Sv39MetaData {
+    const LEVELS: usize = 3;
+    const PA_MAX_BITS: usize = 56;
+    const VA_MAX_BITS: usize = 39;
+}
+pub type Sv39PageTable&lt;I&gt; = PageTable64&lt;Sv39MetaData, Rv64PTE, I&gt;;
+<span class="boring">}</span></code></pre></pre>
+<p>定义了 SV39 模式下的页表结构，可以用类似的方法定义 SV48 等。</p>
+<h3 id="内存分配"><a class="header" href="#内存分配">内存分配</a></h3>
+<p>arceos 在 crate allocator 中定义了不同的内存分配算法，算法包括以页为粒度和以字节为粒度的内存动态分配，在实现内存分配算法时，需要根据算法的分配粒度实现 <code>ByteAllocator</code> 或 <code>PageAllocator</code> 的接口。</p>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub trait BaseAllocator {
+    fn init(&amp;mut self, start: usize, size: usize);
+    fn add_memory(&amp;mut self, start: usize, size: usize) -&gt; AllocResult;
+}
+pub trait ByteAllocator: BaseAllocator {
+    fn alloc(&amp;mut self, layout: Layout) -&gt; AllocResult&lt;NonNull&lt;u8&gt;&gt;;
+    fn dealloc(&amp;mut self, pos: NonNull&lt;u8&gt;, layout: Layout);
+    fn total_bytes(&amp;self) -&gt; usize;
+    fn used_bytes(&amp;self) -&gt; usize;
+    fn available_bytes(&amp;self) -&gt; usize;
+}
+pub trait PageAllocator: BaseAllocator {
+    const PAGE_SIZE: usize;
+    fn alloc_pages(&amp;mut self, num_pages: usize, align_pow2: usize) -&gt; AllocResult&lt;usize&gt;;
+    fn dealloc_pages(&amp;mut self, pos: usize, num_pages: usize);
+    fn total_pages(&amp;self) -&gt; usize;
+    fn used_pages(&amp;self) -&gt; usize;
+    fn available_pages(&amp;self) -&gt; usize;
+}
+<span class="boring">}</span></code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ch04-03.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="ch07-00.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ch04-03.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="ch07-00.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+        <script src="ace.js"></script>
+        <script src="editor.js"></script>
+        <script src="mode-rust.js"></script>
+        <script src="theme-dawn.js"></script>
+        <script src="theme-tomorrow_night.js"></script>
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

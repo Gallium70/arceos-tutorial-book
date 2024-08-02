@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>协作式多任务的框架设计 - ArceOS Tutorial Book</title>
+        <title>多任务调度应用 - ArceOS Tutorial Book</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 helloworld unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现协作式多任务 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> 协作式多任务的功能需求</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> 协作式多任务相关的 crates/modules 组成</a></li><li class="chapter-item expanded "><a href="ch04-03.html" class="active"><strong aria-hidden="true">4.3.</strong> 协作式多任务的框架设计</a></li><li class="chapter-item expanded "><a href="ch04-04.html"><strong aria-hidden="true">4.4.</strong> 组装协作式多任务 unikernel</a></li></ol></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持文件系统的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01.html"><strong aria-hidden="true">5.1.</strong> 文件系统的功能需求</a></li><li class="chapter-item expanded "><a href="ch07-02.html"><strong aria-hidden="true">5.2.</strong> 文件系统的框架设计</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">6.1.</strong> 网络框架的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">6.2.</strong> 网络 unikernel 的框架设计</a></li><li class="chapter-item expanded "><a href="ch08-03.html"><strong aria-hidden="true">6.3.</strong> 组装网络 unikernel</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">简明 ArceOS Tutorial Book</a></li><li class="chapter-item expanded "><a href="ch01-00.html"><strong aria-hidden="true">1.</strong> 实验环境配置</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch01-01.html"><strong aria-hidden="true">1.1.</strong> OS 环境配置</a></li><li class="chapter-item expanded "><a href="ch01-02.html"><strong aria-hidden="true">1.2.</strong> Rust 开发环境配置</a></li><li class="chapter-item expanded "><a href="ch01-03.html"><strong aria-hidden="true">1.3.</strong> Qemu 模拟器安装</a></li><li class="chapter-item expanded "><a href="ch01-04.html"><strong aria-hidden="true">1.4.</strong> 其他工具安装</a></li><li class="chapter-item expanded "><a href="ch01-05.html"><strong aria-hidden="true">1.5.</strong> 运行 Hello World</a></li></ol></li><li class="chapter-item expanded "><a href="ch02-00.html"><strong aria-hidden="true">2.</strong> unikernel 基本概念</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch02-01.html"><strong aria-hidden="true">2.1.</strong> 设计原则和思路</a></li><li class="chapter-item expanded "><a href="ch02-02.html"><strong aria-hidden="true">2.2.</strong> ArceOS 框架设计</a></li><li class="chapter-item expanded "><a href="ch02-03.html"><strong aria-hidden="true">2.3.</strong> 与具体 OS 无关的 crates</a></li><li class="chapter-item expanded "><a href="ch02-04.html"><strong aria-hidden="true">2.4.</strong> 与具有 OS 相关的 modules</a></li></ol></li><li class="chapter-item expanded "><a href="ch03-00.html"><strong aria-hidden="true">3.</strong> 设计实现 Hello World Unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch03-01.html"><strong aria-hidden="true">3.1.</strong> 依靠 axhal 组件实现从系统引导到输出</a></li><li class="chapter-item expanded "><a href="ch03-02.html"><strong aria-hidden="true">3.2.</strong> helloworld 程序基于 axhal 组件实现输出</a></li><li class="chapter-item expanded "><a href="ch03-03.html"><strong aria-hidden="true">3.3.</strong> 添加 axruntime 组件提供更完整的运行环境</a></li><li class="chapter-item expanded "><a href="ch03-04.html"><strong aria-hidden="true">3.4.</strong> 由开启动态内存分配特性来初识系统相关和无关</a></li><li class="chapter-item expanded "><a href="ch03-05.html"><strong aria-hidden="true">3.5.</strong> 修改命令实现对 features 的细粒度控制</a></li></ol></li><li class="chapter-item expanded "><a href="ch04-00.html"><strong aria-hidden="true">4.</strong> 设计实现支持多任务调度的 Unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch04-01.html"><strong aria-hidden="true">4.1.</strong> module: axtask</a></li><li class="chapter-item expanded "><a href="ch04-02.html"><strong aria-hidden="true">4.2.</strong> crate: scheduler</a></li><li class="chapter-item expanded "><a href="ch04-03.html" class="active"><strong aria-hidden="true">4.3.</strong> 多任务调度应用</a></li></ol></li><li class="chapter-item expanded "><a href="ch05-00.html"><strong aria-hidden="true">5.</strong> 设计实现支持内存管理的 Unikernel</a></li><li class="chapter-item expanded "><a href="ch07-00.html"><strong aria-hidden="true">6.</strong> 设计实现支持文件系统的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch07-01.html"><strong aria-hidden="true">6.1.</strong> 文件系统的功能需求</a></li><li class="chapter-item expanded "><a href="ch07-02.html"><strong aria-hidden="true">6.2.</strong> 文件系统的框架设计</a></li></ol></li><li class="chapter-item expanded "><a href="ch08-00.html"><strong aria-hidden="true">7.</strong> 设计实现支持网络的 unikernel</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="ch08-01.html"><strong aria-hidden="true">7.1.</strong> 网络框架的功能需求</a></li><li class="chapter-item expanded "><a href="ch08-02.html"><strong aria-hidden="true">7.2.</strong> 网络 unikernel 的框架设计</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,8 +176,91 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="协作式多任务的框架设计"><a class="header" href="#协作式多任务的框架设计">协作式多任务的框架设计</a></h2>
-<p>上一小节我们已经通过<code>yield</code>和<code>priority</code>初步了解了实现协作式多任务所需的crates和modules，相信有操作系统学习经验的读者也应该对这些算法有基本的了解。ArceOS以它的组件化和定制化见长，核心的设计亮点则是它的框架。本节将以<code>parallel</code>和<code>sleep</code>两个协作式核心应用的实现为基础介绍这部分unikernel的框架设计。</p>
+                        <h2 id="多任务调度应用"><a class="header" href="#多任务调度应用">多任务调度应用</a></h2>
+<p>在前面两节中，我们介绍了多任务调度中最关键的 module 和 crate 的实现，下面我们以一些应用为例，初步了解实现支持多任务调度的 Unikernel 是如何构建起来的。</p>
+<h3 id="yield多任务创建与切换"><a class="header" href="#yield多任务创建与切换">yield：多任务创建与切换</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021">fn main() {
+    for i in 0..NUM_TASKS {
+        task::spawn(move || {
+            println!("Hello, task {}! id = {:?}", i, task::current().id());
+            // 此时已经启动了yield
+            // preempt所需要的依赖libax/sched_rr并没有被包含进去,所以这里默认为协作式实现
+            #[cfg(not(feature = "preempt"))]
+            task::yield_now();
+
+            let order = FINISHED_TASKS.fetch_add(1, Ordering::Relaxed);
+            if option_env!("SMP") == Some("1") {
+                assert!(order == i); // FIFO scheduler
+            }
+        });
+    }
+    println!("Hello, main task{}!");
+    while FINISHED_TASKS.load(Ordering::Relaxed) &lt; NUM_TASKS {
+        #[cfg(not(feature = "preempt"))]
+        task::yield_now();
+    }
+    println!("Task yielding tests run OK!");
+}</code></pre></pre>
+<p>这是一个利用fifo算法进行线程管理的示例程序。从代码实现细节来看，主要分成两步实现：</p>
+<ol>
+<li>操作系统初始化，加载 yield 应用。</li>
+<li>使用 <code>task::spawn</code> 循环来生成 <code>NUM_TASKS</code> 任务（类似于线程）。
+每个任务执行一个函数，只需打印其ID即可。
+如果禁用抢占，也就是应用协作式方法，任务会自动执行 <code>yield</code> 以放弃CPU。如果不使能SMP，使用单核编译，任务的执行顺序必须是<code>FIFO</code>。
+<code>main task</code> 将等待所有其他任务完成。如果没有，则继续执行 <code>yield</code> 并等待。</li>
+</ol>
+<p>也就是说我们如果不规定APP_FEATURE内参数为抢占，那么将默认采取协作式进行实现。读者可以通过运行以下命令进行测试：</p>
+<pre><code class="language-bash">make A=apps/task/yield ARCH=riscv64 LOG=info SMP=1 run
+</code></pre>
+<p>启动yield的同时，我们实现了更加细节部分的调用，流程图如下：</p>
+<pre class="mermaid">graph TD;
+    T[&quot;main task&quot;] --&gt; A[&quot;axtask::lib::spawn&quot;];
+    A -- &quot;task_i&quot; --&gt; B[&quot;axtask::run_queue::AxRunqQueue.scheduler.push_back(task_i)&quot;];
+    A --&gt; C[&quot;RUN_QUEUE.lock()&quot;];
+    B -- &quot;repeat n times&quot; --&gt; A;
+    B -- &quot;main task&quot; --&gt; D[&quot;axtask::lib::yield_now&quot;];
+    D --&gt; E[&quot;axtask::run_queue::AxRunqQueue::resched_inner&quot;];
+    E -- &quot;prev&quot; --&gt; F[&quot;axtask::run_queue::AxRunqQueue.scheduler.push_back(prev)&quot;];
+    E -- &quot;next=axtask::run_queue::AxRunqQueue.scheduler.pop_front()&quot; --&gt; G[&quot;axtask::run_queue::AxRunqQueue:: switch_to(prev,next)&quot;];
+    G -- &quot;repeat n times&quot; --&gt; D;
+    G -- &quot;all n subtask finished&quot; --&gt; H[&quot;finished&quot;]
+</pre>
+<p>注意到，我们在实现支持多任务调度的 Unikernel 时，需要在统一的接口实现内存分配的算法，包括了 <code>alloc</code> 和 <code>paging</code>，内存管理的具体内容我们放在下一章介绍。</p>
+<h3 id="parallel多核并行计算"><a class="header" href="#parallel多核并行计算">parallel：多核并行计算</a></h3>
+<pre><pre class="playground"><code class="language-rust edition2021"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[cfg(feature = "axstd")]
+fn barrier() {
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    static BARRIER_WQ: AxWaitQueueHandle = AxWaitQueueHandle::new();
+    static BARRIER_COUNT: AtomicUsize = AtomicUsize::new(0);
+    BARRIER_COUNT.fetch_add(1, Ordering::Relaxed);
+    api::ax_wait_queue_wait(
+        &amp;BARRIER_WQ,
+        || BARRIER_COUNT.load(Ordering::Relaxed) == NUM_TASKS,
+        None,
+    );
+    api::ax_wait_queue_wake(&amp;BARRIER_WQ, u32::MAX); // wakeup all
+}
+for i in 0..NUM_TASKS {
+    let vec = vec.clone();
+    tasks.push(thread::spawn(move || {
+        let left = i * (NUM_DATA / NUM_TASKS);
+        let right = (left + (NUM_DATA / NUM_TASKS)).min(NUM_DATA);
+        let partial_sum: u64 = vec[left..right].iter().map(sqrt).sum();
+        barrier();
+        partial_sum
+    }));
+}
+<span class="boring">}</span></code></pre></pre>
+<p><code>parallel</code> 对数组中每个元素求 <code>sqrt</code> 再求和。</p>
+<p>首先看 <code>main</code> 函数的执行流程：</p>
+<ul>
+<li>接口 <code>api::ax_wait_queue_wait</code> 阻塞当前线程直到条件满足或超时，此处调用该接口等于主线程睡眠 500ms 。</li>
+<li>调用 <code>task::spawn</code> 创建 <code>NUM_TASKS</code> 个线程，每个线程负责对全局数据的一部分的每个元素执行 <code>sqrt</code> 计算。</li>
+<li>调用 <code>barrier</code> 等待所有线程完成计算任务并返回结果（<code>barrier</code> 函数阻塞线程直到所有线程都执行到调用该函数的位置）</li>
+<li>将所有线程的结果累加得到最终结果</li>
+</ul>
 
                     </main>
 
@@ -187,7 +270,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="ch04-04.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="ch05-00.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -201,7 +284,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="ch04-04.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="ch05-00.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
